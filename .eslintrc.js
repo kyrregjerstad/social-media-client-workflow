@@ -3,12 +3,13 @@ module.exports = {
 		browser: true,
 		es2021: true,
 	},
-	extends: ["airbnb-base", "jest", "plugin:prettier/recommended"],
+	extends: ["airbnb-base", "jest", "cypress", "plugin:prettier/recommended"],
 	overrides: [
 		{
 			env: {
 				node: true,
 				"jest/globals": true,
+				"cypress/globals": true,
 			},
 			files: [".eslintrc.{js,cjs}"],
 			parserOptions: {
