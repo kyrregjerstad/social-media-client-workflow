@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "build": "sass src/scss:dist/css",
-    "start": "sass --watch src/scss:dist/css & live-server"
+    "start": "sass --watch src/scss:dist/css & live-server",
+    "prepare": "husky install",
+    "lint": "eslint . --ext .js",
+    "format": "prettier --write .",
+    "precommit": "npm run format && npm run lint",
+    "prepush": "npm run build && npm run test"
   },
   "keywords": [],
   "author": "Noroff",
@@ -18,7 +23,8 @@
     "eslint-plugin-prettier": "^5.0.1",
     "live-server": "^1.2.2",
     "prettier": "^3.0.3",
-    "sass": "^1.54.8"
+    "sass": "^1.54.8",
+    "husky": "^8.0.0"
   },
   "dependencies": {
     "bootstrap-dark-5": "^1.1.3"
