@@ -1,2 +1,9 @@
 /node_modules
 /dist
+
+# secrets
+.env
+.env.local
+
+# jest test coverage
+/coverage
