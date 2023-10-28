@@ -7,3 +7,7 @@
 
 # jest test coverage
 /coverage
+
+# cypress
+/cypress/videos
+/cypress/screenshots
