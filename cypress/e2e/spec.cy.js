@@ -31,22 +31,14 @@ describe("template spec", () => {
 	});
 
 	it("logs in", () => {
-		cy.get("#registerModalLabel").contains("Create Profile").should("be.visible");
-		cy.get("#registerModalLabel").contains("Create Profile").click(); // workaround for login button not being clickable in cypress
-		cy.get("#registerForm").contains("Login").click();
+		cy.login({ email, password, name });
+	});
 
-		cy.get("#loginModalLabel").contains("Login").should("be.visible");
-
-		cy.wait(300);
-		cy.get("#loginEmail").click();
-		cy.get("#loginEmail").type(email);
-		cy.get("#loginPassword").click();
-		cy.get("#loginPassword").type(password);
-		cy.get("#loginForm > .modal-footer > .btn-success").click();
-
-		cy.get("#loginModalLabel").should("not.be.visible");
-		cy.url().should("include", "?view=profile&name=noroff_test_user");
-		cy.get("h4").contains("noroff_test_user").should("be.visible");
-		cy.get("span").contains("noroff-test-user@noroff.no").should("be.visible");
+	it("logs out", () => {
+		cy.login({ email, password, name });
+		cy.visit("/?view=profile&name=" + name);
+		cy.get("button").contains("Logout").should("be.visible");
+		cy.contains("Logout").click();
+		cy.get("#registerModalLabel").should("be.visible");
 	});
 });
