@@ -21,10 +21,11 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-prettier": "^5.0.1",
+    "husky": "^8.0.0",
     "live-server": "^1.2.2",
     "prettier": "^3.0.3",
-    "sass": "^1.54.8",
-    "husky": "^8.0.0"
+    "prettier-eslint": "^16.1.2",
+    "sass": "^1.54.8"
   },
   "dependencies": {
     "bootstrap-dark-5": "^1.1.3"
