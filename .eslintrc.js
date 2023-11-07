@@ -3,7 +3,12 @@ module.exports = {
 		browser: true,
 		es2021: true,
 	},
-	extends: ["airbnb-base", "jest", "cypress", "plugin:prettier/recommended"],
+	extends: [
+		"airbnb-base",
+		"plugin:jest/recommended",
+		"plugin:cypress/recommended",
+		"plugin:prettier/recommended",
+	],
 	overrides: [
 		{
 			env: {
