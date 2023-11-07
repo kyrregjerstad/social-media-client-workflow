@@ -1,1 +1,1 @@
-![example workflow](https://github.com/kyrregjerstad/social-media-client-workflow/actions/workflows/cypress.yml/badge.svg)
+![example workflow](https://github.com/kyrregjerstad/social-media-client-workflow/actions/workflows/cypress.yml/badge.svg?event=push)
