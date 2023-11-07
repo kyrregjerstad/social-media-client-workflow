@@ -8,7 +8,7 @@ describe("template spec", () => {
 	});
 
 	it("goes to the home page", () => {
-		expect(cy.get("#registerModalLabel")).to("be.visible");
+		cy.get("#registerModalLabel").should("be.visible");
 	});
 
 	it("does not log in with wrong credentials", () => {
@@ -26,7 +26,7 @@ describe("template spec", () => {
 		cy.get("#loginForm > .modal-footer > .btn-success").click();
 
 		cy.on("window:alert", (str) => {
-			expect(str).equal(`Either your username was not found or your password is incorrect`);
+			expect(str).to.equal(`Either your username was not found or your password is incorrect`);
 		});
 	});
 
@@ -36,8 +36,7 @@ describe("template spec", () => {
 
 	it("logs out", () => {
 		cy.login({ email, password, name });
-		cy.visit(`/?view=profile&name=${name}`);
-		expect(cy.get("button").contains("Logout")).to("be.visible");
+		cy.visit("/?view=profile&name=" + name);
 		cy.get("button").contains("Logout").should("be.visible");
 		cy.contains("Logout").click();
 		cy.get("#registerModalLabel").should("be.visible");
