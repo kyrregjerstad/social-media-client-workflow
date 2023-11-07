@@ -3,33 +3,12 @@ name: Continuous Integration
 on: push
 
 jobs:
-  lint:
-    name: Lint
+  setup:
     runs-on: ubuntu-latest
+    outputs:
+      cache-key: ${{ steps.cache.outputs.cache-key }}
     steps:
       - uses: actions/checkout@v4.1.1
-      - name: Install Dependencies
-        run: npm install
-      - name: Lint Code
-        run: npm run lint
-
-  unit-test:
-    name: Unit Test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4.1.1
-      - name: Install Dependencies
-        run: npm install
-      - name: Run Unit Tests
-        run: npm run test
-
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4.1.1
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -37,18 +16,63 @@ jobs:
           node-version: "18"
 
       - name: Cache node modules
+        id: cache
         uses: actions/cache@v3
-        env:
-          cache-name: cache-node-modules
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         run: npm install
+
+  lint:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - name: Use Node.js ${{ needs.setup.outputs.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+      - name: Restore node modules from cache
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ needs.setup.outputs.cache-key }}
+      - name: Lint Code
+        run: npm run lint
+
+  unit-test:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - name: Use Node.js ${{ needs.setup.outputs.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+      - name: Restore node modules from cache
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ needs.setup.outputs.cache-key }}
+      - name: Run Unit Tests
+        run: npm run test
+
+  build:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - name: Use Node.js ${{ needs.setup.outputs.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+      - name: Restore node modules from cache
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ needs.setup.outputs.cache-key }}
       - name: Build Project
         run: npm run build
