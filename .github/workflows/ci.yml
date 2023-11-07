@@ -63,16 +63,38 @@ jobs:
   build:
     needs: setup
     runs-on: ubuntu-latest
+    outputs:
+      build-artifact: build
     steps:
-      - uses: actions/checkout@v4.1.1
-      - name: Use Node.js ${{ needs.setup.outputs.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: "18"
-      - name: Restore node modules from cache
-        uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: ${{ needs.setup.outputs.cache-key }}
       - name: Build Project
         run: npm run build
+
+      - name: Save build folder
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          if-no-files-found: error
+          path: build
+
+  cypress-run:
+    needs: build
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+
+      - name: Download the build folder
+        uses: actions/download-artifact@v3
+        with:
+          name: build
+          path: build
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        env:
+          CY_NAME: ${{ secrets.CY_NAME }}
+          CY_EMAIL: ${{ secrets.CY_EMAIL }}
+          CY_PASSWORD: ${{ secrets.CY_PASSWORD }}
+        with:
+          start: npm start
+          browser: chrome
