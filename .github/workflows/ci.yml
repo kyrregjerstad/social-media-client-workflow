@@ -14,12 +14,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "18"
+          cache: "npm"
 
       - name: Cache node modules
         id: cache
-        uses: actions/cache@v3
+        uses: actions/cache@v3.3.2
         with:
-          path: node_modules
+          path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install Dependencies
@@ -35,10 +36,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "18"
+          cache: "npm"
       - name: Restore node modules from cache
-        uses: actions/cache@v3
+        uses: actions/cache@v3.3.2
         with:
-          path: node_modules
+          path: ~/.npm
           key: ${{ needs.setup.outputs.cache-key }}
       - name: Lint Code
         run: npm run lint
@@ -53,7 +55,7 @@ jobs:
         with:
           node-version: "18"
       - name: Restore node modules from cache
-        uses: actions/cache@v3
+        uses: actions/cache@v3.3.2
         with:
           path: node_modules
           key: ${{ needs.setup.outputs.cache-key }}
@@ -66,6 +68,11 @@ jobs:
     outputs:
       build-artifact: build
     steps:
+      - name: Restore node modules from cache
+        uses: actions/cache@v3.3.2
+        with:
+          path: node_modules
+          key: ${{ needs.setup.outputs.cache-key }}
       - name: Build Project
         run: npm run build
 
@@ -82,6 +89,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.1
+
+      - name: Restore node modules from cache
+        uses: actions/cache@v3.3.2
+        with:
+          path: node_modules
+          key: ${{ needs.setup.outputs.cache-key }}
 
       - name: Download the build folder
         uses: actions/download-artifact@v3
