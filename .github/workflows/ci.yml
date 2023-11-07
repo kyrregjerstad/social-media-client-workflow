@@ -3,8 +3,28 @@ name: Continuous Integration
 on: push
 
 jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - name: Install Dependencies
+        run: npm install
+      - name: Lint Code
+        run: npm run lint
+
+  unit-test:
+    name: Unit Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - name: Install Dependencies
+        run: npm install
+      - name: Run Unit Tests
+        run: npm run test
+
   build:
-    name: Build and Test
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
@@ -30,14 +50,5 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
-
-      - name: Lint Code
-        run: npm run lint
-
-      - name: Run Unit Tests
-        run: npm run test
-
-        # e2e tests are performed on cypress.yml
-
       - name: Build Project
         run: npm run build
