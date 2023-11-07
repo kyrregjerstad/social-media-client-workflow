@@ -31,11 +31,6 @@ jobs:
         with:
           node-version: "18"
           cache: "npm"
-      - name: Restore node modules from cache
-        uses: actions/cache@v3.3.2
-        with:
-          path: ~/.npm
-          key: ${{ needs.setup.outputs.cache-key }}
       - name: Lint Code
         run: npm run lint
 
@@ -44,15 +39,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.1
-      - name: Use Node.js ${{ needs.setup.outputs.node-version }}
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: "18"
-      - name: Restore node modules from cache
-        uses: actions/cache@v3.3.2
-        with:
-          path: ~/.npm
-          key: ${{ needs.setup.outputs.cache-key }}
+          cache: "npm"
       - name: Run Unit Tests
         run: npm run test
 
@@ -62,11 +52,10 @@ jobs:
     outputs:
       build-artifact: build
     steps:
-      - name: Restore node modules from cache
-        uses: actions/cache@v3.3.2
+      - uses: actions/setup-node@v4
         with:
-          path: ~/.npm
-          key: ${{ needs.setup.outputs.cache-key }}
+          node-version: "18"
+          cache: "npm"
       - name: Build Project
         run: npm run build
 
@@ -81,14 +70,11 @@ jobs:
     needs: build
     runs-on: ubuntu-22.04
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4.1.1
-
-      - name: Restore node modules from cache
-        uses: actions/cache@v3.3.2
+      - uses: actions/checkout@v4.1.1
+      - uses: actions/setup-node@v4
         with:
-          path: ~/.npm
-          key: ${{ needs.setup.outputs.cache-key }}
+          node-version: "18"
+          cache: "npm"
 
       - name: Download the build folder
         uses: actions/download-artifact@v3
