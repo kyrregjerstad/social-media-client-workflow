@@ -57,7 +57,7 @@ jobs:
       - name: Restore node modules from cache
         uses: actions/cache@v3.3.2
         with:
-          path: node_modules
+          path: ~/.npm
           key: ${{ needs.setup.outputs.cache-key }}
       - name: Run Unit Tests
         run: npm run test
@@ -71,7 +71,7 @@ jobs:
       - name: Restore node modules from cache
         uses: actions/cache@v3.3.2
         with:
-          path: node_modules
+          path: ~/.npm
           key: ${{ needs.setup.outputs.cache-key }}
       - name: Build Project
         run: npm run build
@@ -93,7 +93,7 @@ jobs:
       - name: Restore node modules from cache
         uses: actions/cache@v3.3.2
         with:
-          path: node_modules
+          path: ~/.npm
           key: ${{ needs.setup.outputs.cache-key }}
 
       - name: Download the build folder
