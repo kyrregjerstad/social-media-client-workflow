@@ -1,6 +1,5 @@
 const { defineConfig } = require("cypress");
 require("dotenv").config();
-console.log(process.env); // remove this after you've confirmed it is working
 
 module.exports = defineConfig({
 	env: {
@@ -9,9 +8,7 @@ module.exports = defineConfig({
 		password: process.env.CY_PASSWORD,
 	},
 	e2e: {
-		setupNodeEvents(on, config) {
-			// implement node event listeners here
-		},
+		setupNodeEvents() {},
 		baseUrl: "http://localhost:8080/",
 	},
 	waitForAnimations: true,

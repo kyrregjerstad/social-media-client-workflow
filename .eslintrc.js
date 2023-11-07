@@ -32,7 +32,7 @@ module.exports = {
 		"import/no-extraneous-dependencies": [
 			"error",
 			{
-				devDependencies: ["**/*.test.js", "**/*.spec.js"],
+				devDependencies: ["**/*.test.js", "**/*.spec.js", "**/*.config.js"],
 			},
 		],
 	},
