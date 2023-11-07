@@ -9,7 +9,6 @@ jobs:
       cache-key: ${{ steps.cache.outputs.cache-key }}
     steps:
       - uses: actions/checkout@v4.1.1
-
       - name: Cache npm
         id: cache
         uses: actions/cache@v3
@@ -56,6 +55,8 @@ jobs:
         with:
           node-version: "18"
           cache: "npm"
+      - name: install dependencies
+        run: npm install
       - name: Build Project
         run: npm run build
 
