@@ -64,6 +64,14 @@ jobs:
           name: dist
           if-no-files-found: error
           path: dist
+      - name: Update Unit Test Badge
+        uses: RubbaBoy/BYOB@v1.3.0
+        with:
+          name: build
+          status: "Success"
+          color: brightgreen
+          label: "Build Status"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
   E2E-tests:
     needs: build

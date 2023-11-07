@@ -8,4 +8,4 @@
 
 ![E2E Tests](https://github.com/kyrregjerstad/social-media-client-workflow/actions/workflows/cypress.yml/badge.svg?event=push&job=E2E-tests)
 
-![Linter](https://byob.yarr.is/kyrregjerstad/social-media-client-workflow/lint)
+![Linter](https://byob.yarr.is/kyrregjerstad/social-media-client-workflow/build)
