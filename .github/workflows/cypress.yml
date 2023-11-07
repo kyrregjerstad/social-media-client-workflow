@@ -39,6 +39,10 @@ jobs:
 
       - name: Cypress run
         uses: cypress-io/github-action@v6
+        env:
+          CY_NAME: ${{secrets.CY_NAME}}
+          CY_EMAIL: ${{secrets.CY_EMAIL}}
+          CY_PASSWORD: ${{secrets.CY_PASSWORD}}
         with:
           start: npm start
           browser: chrome
