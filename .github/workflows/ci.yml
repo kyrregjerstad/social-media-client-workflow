@@ -23,6 +23,14 @@ jobs:
           cache: "npm"
       - run: npm i
       - run: npm run lint
+      - name: Update Unit Test Badge
+        uses: RubbaBoy/BYOB@v1.3.0
+        with:
+          name: lint
+          status: "Success"
+          color: brightgreen
+          label: "Lint Status"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
   unit-tests:
     needs: setup
