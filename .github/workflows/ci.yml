@@ -41,6 +41,8 @@ jobs:
         with:
           node-version: "18"
 
+      - name: install dependencies
+        run: npm ci
       - name: Lint Code
         run: npm run lint
 
@@ -52,7 +54,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "18"
-          cache: "npm"
+
       - name: Run Unit Tests
         run: npm run test
 
@@ -65,9 +67,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "18"
-          cache: "npm"
-      - name: install dependencies
-        run: npm install
       - name: Build Project
         run: npm run build
 
