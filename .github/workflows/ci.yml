@@ -68,9 +68,9 @@ jobs:
       - name: Save build folder
         uses: actions/upload-artifact@v3
         with:
-          name: build
+          name: dist
           if-no-files-found: error
-          path: build
+          path: dist
 
   cypress-run:
     needs: build
@@ -88,8 +88,8 @@ jobs:
       - name: Download the build folder
         uses: actions/download-artifact@v3
         with:
-          name: build
-          path: build
+          name: dist
+          path: dist
 
       - name: Cypress run
         uses: cypress-io/github-action@v6
