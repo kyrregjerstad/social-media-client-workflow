@@ -1,1 +1,1 @@
-{"build":{"label":"Build Status","status":"success","color":"31A802"},"unit-test":{"label":"Unit Test Status","status":"success","color":"#31a802"},"e2e":{"label":"E2E Status","status":"success","color":"#31a802"},"lint":{"label":"Lint Status","status":"failure","color":"D10007"}}
+{"build":{"label":"Build Status","status":"success","color":"31A802"},"unit-test":{"label":"Unit Test Status","status":"success","color":"31A802"},"e2e":{"label":"E2E Status","status":"success","color":"#31a802"},"lint":{"label":"Lint Status","status":"failure","color":"D10007"}}
