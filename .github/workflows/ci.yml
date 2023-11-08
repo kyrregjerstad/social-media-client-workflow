@@ -23,11 +23,11 @@ jobs:
           cache: "npm"
       - run: npm i
       - run: npm run lint
-      - name: Update Unit Test Badge
+      - name: Update Lint Badge
         uses: RubbaBoy/BYOB@v1.3.0
         with:
           name: lint
-          status: "Success"
+          status: ${{ job.status }}
           color: brightgreen
           label: "Lint Status"
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -43,6 +43,14 @@ jobs:
           cache: "npm"
       - run: npm i
       - run: npm run test
+      - name: Update Unit Test Badge
+        uses: RubbaBoy/BYOB@v1.3.0
+        with:
+          name: unit-test
+          status: ${{ job.status }}
+          color: brightgreen
+          label: "Unit Test Status"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
   build:
     needs: setup
@@ -64,11 +72,11 @@ jobs:
           name: dist
           if-no-files-found: error
           path: dist
-      - name: Update Unit Test Badge
+      - name: Update Build Badge
         uses: RubbaBoy/BYOB@v1.3.0
         with:
           name: build
-          status: "Success"
+          status: ${{ job.status }}
           color: brightgreen
           label: "Build Status"
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -100,3 +108,11 @@ jobs:
         with:
           start: npm start
           browser: chrome
+      - name: Update E2E Badge
+        uses: RubbaBoy/BYOB@v1.3.0
+        with:
+          name: e2e
+          status: ${{ job.status }}
+          color: brightgreen
+          label: "E2E Status"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
