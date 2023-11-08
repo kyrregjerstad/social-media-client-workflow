@@ -4,9 +4,6 @@ on: push
 
 env:
   CI: true
-  COLOR_SUCCESS: "#31a802"
-  COLOR_FAILURE: "#d10007"
-  COLOR_PENDING: "#e0a607"
 
 jobs:
   setup:
@@ -35,7 +32,7 @@ jobs:
         with:
           name: lint
           status: ${{ job.status }}
-          color: ${{ job.status == 'success' && env.COLOR_SUCCESS || job.status == 'failure' && env.COLOR_FAILURE || env.COLOR_PENDING }}
+          color: ${{ job.status == 'success' && '#31a802' || job.status == 'failure' && '#d10007' || '#e0a607' }}
           label: "Lint Status"
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -56,7 +53,7 @@ jobs:
         with:
           name: unit-test
           status: ${{ job.status }}
-          color: ${{ job.status == 'success' && env.COLOR_SUCCESS || job.status == 'failure' && env.COLOR_FAILURE || env.COLOR_PENDING }}
+          color: ${{ job.status == 'success' && '#31a802' || job.status == 'failure' && '#d10007' || '#e0a607' }}
           label: "Unit Test Status"
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -86,7 +83,7 @@ jobs:
         with:
           name: build
           status: ${{ job.status }}
-          color: ${{ job.status == 'success' && env.COLOR_SUCCESS || job.status == 'failure' && env.COLOR_FAILURE || env.COLOR_PENDING }}
+          color: ${{ job.status == 'success' && '#31a802' || job.status == 'failure' && '#d10007' || '#e0a607' }}
           label: "Build Status"
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -123,6 +120,6 @@ jobs:
         with:
           name: e2e
           status: ${{ job.status }}
-          color: ${{ job.status == 'success' && env.COLOR_SUCCESS || job.status == 'failure' && env.COLOR_FAILURE || env.COLOR_PENDING }}
+          color: ${{ job.status == 'success' && '#31a802' || job.status == 'failure' && '#d10007' || '#e0a607' }}
           label: "E2E Status"
           github_token: ${{ secrets.GITHUB_TOKEN }}
