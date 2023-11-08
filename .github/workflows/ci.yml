@@ -32,7 +32,7 @@ jobs:
         with:
           name: lint
           status: ${{ job.status }}
-          color: ${{ job.status == 'success' && '#31a802' || job.status == 'failure' && '#d10007' || '#e0a607' }}
+          color: ${{ job.status == 'success' && '31A802' || job.status == 'failure' && 'D10007' || 'E0A607' }}
           label: "Lint Status"
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -53,7 +53,7 @@ jobs:
         with:
           name: unit-test
           status: ${{ job.status }}
-          color: ${{ job.status == 'success' && '#31a802' || job.status == 'failure' && '#d10007' || '#e0a607' }}
+          color: ${{ job.status == 'success' && '31A802' || job.status == 'failure' && 'D10007' || 'E0A607' }}
           label: "Unit Test Status"
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -83,7 +83,7 @@ jobs:
         with:
           name: build
           status: ${{ job.status }}
-          color: ${{ job.status == 'success' && '#31a802' || job.status == 'failure' && '#d10007' || '#e0a607' }}
+          color: ${{ job.status == 'success' && '31A802' || job.status == 'failure' && 'D10007' || 'E0A607' }}
           label: "Build Status"
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -120,6 +120,6 @@ jobs:
         with:
           name: e2e
           status: ${{ job.status }}
-          color: ${{ job.status == 'success' && '#31a802' || job.status == 'failure' && '#d10007' || '#e0a607' }}
+          color: ${{ job.status == 'success' && '31A802' || job.status == 'failure' && 'D10007' || 'E0A607' }}
           label: "E2E Status"
           github_token: ${{ secrets.GITHUB_TOKEN }}
