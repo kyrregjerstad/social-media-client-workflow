@@ -25,6 +25,7 @@ jobs:
       - run: npm run lint
       - name: Update Lint Badge
         uses: RubbaBoy/BYOB@v1.3.0
+        if: ${{ always() }}
         with:
           name: lint
           status: ${{ job.status }}
@@ -45,6 +46,7 @@ jobs:
       - run: npm run test
       - name: Update Unit Test Badge
         uses: RubbaBoy/BYOB@v1.3.0
+        if: ${{ always() }}
         with:
           name: unit-test
           status: ${{ job.status }}
@@ -74,6 +76,7 @@ jobs:
           path: dist
       - name: Update Build Badge
         uses: RubbaBoy/BYOB@v1.3.0
+        if: ${{ always() }}
         with:
           name: build
           status: ${{ job.status }}
@@ -110,6 +113,7 @@ jobs:
           browser: chrome
       - name: Update E2E Badge
         uses: RubbaBoy/BYOB@v1.3.0
+        if: ${{ always() }}
         with:
           name: e2e
           status: ${{ job.status }}
