@@ -4,9 +4,9 @@ on: push
 
 env:
   CI: true
-  COLOR_SUCCESS: "#31a802"
-  COLOR_FAILURE: "#d10007"
-  COLOR_PENDING: "#e0a607"
+  COLOR_SUCCESS: green
+  COLOR_FAILURE: red
+  COLOR_PENDING: yellow
 
 jobs:
   setup:
