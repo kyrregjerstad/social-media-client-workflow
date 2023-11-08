@@ -1,1 +1,1 @@
-{"build":{"label":"Build Status","status":"success","color":"brightgreen"},"unit-test":{"label":"Unit Test Status","status":"success","color":"brightgreen"}}
+{"build":{"label":"Build Status","status":"success","color":"brightgreen"},"unit-test":{"label":"Unit Test Status","status":"success","color":"brightgreen"},"e2e":{"label":"E2E Status","status":"success","color":"brightgreen"}}
