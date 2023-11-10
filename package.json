@@ -18,6 +18,10 @@
 	"engines": {
 		"node": ">=18.0.0"
 	},
+	"lint-staged": {
+		"*.js": "eslint --cache --fix",
+		"*.{js,css,html}": "prettier --write"
+	},
 	"keywords": [],
 	"author": "Noroff",
 	"license": "ISC",
