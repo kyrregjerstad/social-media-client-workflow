@@ -1,7 +1,5 @@
 const aFunction = () => {
-	        console.log("hi");
-
-          
+	console.log("hi");
 };
 
 aFunction();
