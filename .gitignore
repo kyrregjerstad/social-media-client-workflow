@@ -1,2 +1,16 @@
 /node_modules
 /dist
+
+# secrets
+.env
+.env.local
+
+# jest test coverage
+/coverage
+
+# cypress
+/cypress/videos
+/cypress/screenshots
+
+# cahce
+.eslintcache

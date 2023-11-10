@@ -12,8 +12,9 @@ jobs:
   review:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       - uses: fluxninja/openai-pr-reviewer@main
